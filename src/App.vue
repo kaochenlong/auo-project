@@ -60,6 +60,7 @@ export default {
   <div class="flex items-center mt-4 gap-2">
     <input
       v-model.trim="bookName"
+      @keydown.enter="addBook"
       type="text"
       class="input input-bordered w-full"
     />
