@@ -1,17 +1,23 @@
 <script>
+import { v4 as uuid } from "uuid"
+
 export default {
   data() {
     return {
       title: "AUO 圖書管理系統",
-      book: "",
+      bookName: "",
       books: [],
     }
   },
   methods: {
     addBook() {
-      if (this.book != "") {
-        this.books.unshift(this.book)
-        this.book = ""
+      if (this.bookName != "") {
+        const book = {
+          id: uuid(),
+          title: this.bookName,
+        }
+        this.books.unshift(book)
+        this.bookName = ""
       }
     },
   },
@@ -22,7 +28,7 @@ export default {
   <h1 class="title">{{ title }}</h1>
   <div class="flex items-center mt-4 gap-2">
     <input
-      v-model.trim="book"
+      v-model.trim="bookName"
       type="text"
       class="input input-bordered w-full"
     />
@@ -32,7 +38,7 @@ export default {
   <div>
     <h2 class="text-2xl" v-if="books.length == 0">目前無任何資料</h2>
     <ul v-else>
-      <li v-for="book in books">{{ book }}</li>
+      <li class="text-2xl" v-for="book in books">{{ book.title }}</li>
     </ul>
   </div>
 </template>
