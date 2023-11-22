@@ -11,6 +11,11 @@ export default {
       // result: 0,
     }
   },
+  watch: {
+    num_x(newValue, oldValue) {
+      console.log({ newValue, oldValue })
+    },
+  },
   methods: {
     printout() {
       console.log(this.title)
