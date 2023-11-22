@@ -1,12 +1,28 @@
 <script>
 import { v4 as uuid } from "uuid"
 
+const STORAGE_NAME = "auo-book"
+
+const getBooks = () => {
+  return JSON.parse(localStorage.getItem(STORAGE_NAME))
+}
+
+const saveBooks = (books) => {
+  localStorage.setItem(STORAGE_NAME, JSON.stringify(books))
+}
+
 export default {
   data() {
     return {
       title: "AUO 圖書管理系統",
       bookName: "",
       books: [],
+    }
+  },
+  beforeMount: function () {
+    const books = getBooks()
+    if (books) {
+      this.books = books
     }
   },
   methods: {
@@ -18,6 +34,9 @@ export default {
         }
         this.books.unshift(book)
         this.bookName = ""
+
+        // save
+        saveBooks(this.books)
       }
     },
   },
