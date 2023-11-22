@@ -6,6 +6,11 @@ export default {
       devices: ["A", "B", "C", "D", "E"],
     }
   },
+  methods: {
+    printout() {
+      console.log(this.title)
+    },
+  },
 }
 </script>
 
@@ -15,6 +20,7 @@ export default {
   <ul>
     <li v-for="d in devices">{{ d }}</li>
   </ul>
+  <button @click="printout">click</button>
 </template>
 
 <style scoped></style>
