@@ -9,7 +9,10 @@ export default {
   },
   methods: {
     addBook() {
-      this.books.push(this.book)
+      if (this.book != "") {
+        this.books.unshift(this.book)
+        this.book = ""
+      }
     },
   },
 }
@@ -18,7 +21,11 @@ export default {
 <template>
   <h1 class="title">{{ title }}</h1>
   <div class="flex items-center mt-4 gap-2">
-    <input v-model="book" type="text" class="input input-bordered w-full" />
+    <input
+      v-model.trim="book"
+      type="text"
+      class="input input-bordered w-full"
+    />
     <button @click="addBook" class="btn btn-primary">新增</button>
   </div>
   <div class="divider"></div>
