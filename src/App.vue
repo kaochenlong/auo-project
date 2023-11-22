@@ -30,7 +30,12 @@ export default {
       const btn = e.currentTarget
       const id = btn?.dataset.bookid
       if (id) {
-        // 刪除
+        const bookIndex = this.books.findIndex((book) => book.id == id)
+
+        if (bookIndex >= 0) {
+          this.books.splice(bookIndex, 1)
+          saveBooks(this.books)
+        }
       }
     },
     addBook() {
