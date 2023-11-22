@@ -3,8 +3,14 @@ export default {
   data() {
     return {
       title: "AUO 圖書管理系統",
+      book: "",
       books: [],
     }
+  },
+  methods: {
+    addBook() {
+      this.books.push(this.book)
+    },
   },
 }
 </script>
@@ -12,8 +18,8 @@ export default {
 <template>
   <h1 class="title">{{ title }}</h1>
   <div class="flex items-center mt-4 gap-2">
-    <input type="text" class="input input-bordered w-full" />
-    <button class="btn btn-primary">新增</button>
+    <input v-model="book" type="text" class="input input-bordered w-full" />
+    <button @click="addBook" class="btn btn-primary">新增</button>
   </div>
   <div class="divider"></div>
   <div>
