@@ -3,14 +3,18 @@ export default {
   data() {
     return {
       title: "AUO Project",
-    };
+      devices: ["A", "B", "C", "D", "E"],
+    }
   },
-};
+}
 </script>
 
 <template>
   <h1>{{ title }}</h1>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore</p>
+  <input type="text" v-model="title" />
+  <ul>
+    <li v-for="d in devices">{{ d }}</li>
+  </ul>
 </template>
 
 <style scoped></style>
