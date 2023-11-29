@@ -1,5 +1,6 @@
 <script>
 import { v4 as uuid } from "uuid"
+import Header from "./components/infomation/Header.vue"
 
 const STORAGE_NAME = "auo-book"
 
@@ -19,17 +20,16 @@ export default {
       books: [],
     }
   },
+  components: {
+    Header: Header,
+  },
   beforeMount: function () {
     const books = getBooks()
     if (books) {
       this.books = books
     }
   },
-  computed: {
-    bookCount() {
-      return this.books.filter((book) => book.title.length > 2).length
-    },
-  },
+
   methods: {
     removeBook(e) {
       const btn = e.currentTarget
@@ -73,8 +73,7 @@ export default {
   </div>
   <div class="divider"></div>
   <div>
-    <h2 class="text-2xl" v-if="books.length == 0">目前無任何資料</h2>
-    <h2 class="text-2xl" v-else>目前共有 {{ bookCount }} 本書</h2>
+    <Header :books="books" />
 
     <ul>
       <li class="flex items-center gap-2 text-2xl" v-for="book in books">
