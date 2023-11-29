@@ -1,22 +1,21 @@
-<script>
-import { saveBooks } from "@/auo-lib/storage"
+<script setup>
+import { defineProps, defineEmits } from "vue"
 
-export default {
-  props: {
-    book: {
-      type: Object,
-      required: true,
-    },
+defineProps({
+  book: {
+    type: Object,
+    required: true,
   },
-  methods: {
-    removeBook(e) {
-      const btn = e.currentTarget
-      const id = btn?.dataset.bookid
-      if (id) {
-        this.$emit("remove-book", id)
-      }
-    },
-  },
+})
+
+const emits = defineEmits(["remove-book"])
+
+const removeBook = (e) => {
+  const btn = e.currentTarget
+  const id = btn?.dataset.bookid
+  if (id) {
+    emits("remove-book", id)
+  }
 }
 </script>
 
