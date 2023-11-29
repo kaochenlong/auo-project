@@ -8,4 +8,9 @@ const saveBooks = (books) => {
   localStorage.setItem(STORAGE_NAME, JSON.stringify(books))
 }
 
-export { getBooks, saveBooks }
+const getBook = (id) => {
+  const books = getBooks()
+  return books.find((book) => book.id == id)
+}
+
+export { getBooks, saveBooks, getBook }
