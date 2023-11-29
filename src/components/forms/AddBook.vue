@@ -1,16 +1,13 @@
-<script>
-export default {
-  data() {
-    return {
-      bookName: "",
-    }
-  },
-  methods: {
-    addBook() {
-      this.$emit("add-book", this.bookName)
-      this.bookName = ""
-    },
-  },
+<script setup>
+import { ref, defineEmits } from "vue"
+
+const bookName = ref("")
+
+const emits = defineEmits(["add-book"])
+
+const addBook = () => {
+  emits("add-book", bookName.value)
+  bookName.value = ""
 }
 </script>
 
