@@ -25,6 +25,11 @@ export default {
       this.books = books
     }
   },
+  computed: {
+    bookCount() {
+      return this.books.filter((book) => book.title.length > 2).length
+    },
+  },
   methods: {
     removeBook(e) {
       const btn = e.currentTarget
@@ -57,20 +62,22 @@ export default {
 
 <template>
   <h1 class="title">{{ title }}</h1>
-  <div class="flex items-center mt-4 gap-2">
+  <div class="flex items-center gap-2 mt-4">
     <input
       v-model.trim="bookName"
       @keydown.enter="addBook"
       type="text"
-      class="input input-bordered w-full"
+      class="w-full input input-bordered"
     />
     <button @click="addBook" class="btn btn-primary">新增</button>
   </div>
   <div class="divider"></div>
   <div>
     <h2 class="text-2xl" v-if="books.length == 0">目前無任何資料</h2>
-    <ul v-else>
-      <li class="text-2xl flex items-center gap-2" v-for="book in books">
+    <h2 class="text-2xl" v-else>目前共有 {{ bookCount }} 本書</h2>
+
+    <ul>
+      <li class="flex items-center gap-2 text-2xl" v-for="book in books">
         <button :data-bookid="book.id" @click="removeBook" class="btn btn-xs">
           <svg
             xmlns="http://www.w3.org/2000/svg"
