@@ -1,6 +1,6 @@
 <script>
 import { v4 as uuid } from "uuid"
-import { getBooks } from "@/auo-lib/storage"
+import { getBooks, saveBooks } from "@/auo-lib/storage"
 import Header from "./components/infomation/Header.vue"
 import BookItem from "./components/books/Item.vue"
 
@@ -24,6 +24,16 @@ export default {
   },
 
   methods: {
+    removeBook(id) {
+      if (id) {
+        const bookIndex = this.books.findIndex((book) => book.id == id)
+
+        if (bookIndex >= 0) {
+          this.books.splice(bookIndex, 1)
+          saveBooks(this.books)
+        }
+      }
+    },
     addBook() {
       if (this.bookName != "") {
         const book = {
@@ -56,7 +66,7 @@ export default {
   <div>
     <Header :books="books" />
     <ul>
-      <BookItem :books="books" />
+      <BookItem @remove-book="removeBook" v-for="book in books" :book="book" />
     </ul>
   </div>
 </template>

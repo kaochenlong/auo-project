@@ -3,10 +3,9 @@ import { saveBooks } from "@/auo-lib/storage"
 
 export default {
   props: {
-    books: {
-      type: Array,
+    book: {
+      type: Object,
       required: true,
-      default: [],
     },
   },
   methods: {
@@ -14,12 +13,7 @@ export default {
       const btn = e.currentTarget
       const id = btn?.dataset.bookid
       if (id) {
-        const bookIndex = this.books.findIndex((book) => book.id == id)
-
-        if (bookIndex >= 0) {
-          this.books.splice(bookIndex, 1)
-          saveBooks(this.books)
-        }
+        this.$emit("remove-book", id)
       }
     },
   },
@@ -27,7 +21,7 @@ export default {
 </script>
 
 <template>
-  <li class="flex items-center gap-2 text-2xl" v-for="book in books">
+  <li class="flex items-center gap-2 text-2xl">
     <button :data-bookid="book.id" @click="removeBook" class="btn btn-xs">
       <svg
         xmlns="http://www.w3.org/2000/svg"
