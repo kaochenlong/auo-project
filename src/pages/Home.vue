@@ -2,9 +2,9 @@
 import { v4 as uuid } from "uuid"
 import { getBooks, saveBooks } from "@/auo-lib/storage"
 import { reactive, onBeforeMount } from "vue"
-import Header from "./components/infomation/Header.vue"
-import BookItem from "./components/books/Item.vue"
-import AddBookForm from "./components/forms/AddBook.vue"
+import Header from "@/components/infomation/Header.vue"
+import BookItem from "@/components/books/Item.vue"
+import AddBookForm from "@/components/forms/AddBook.vue"
 
 const title = "AUO 圖書管理系統"
 const books = reactive([])

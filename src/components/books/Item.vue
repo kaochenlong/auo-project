@@ -32,6 +32,8 @@ const removeBook = (e) => {
         />
       </svg>
     </button>
-    {{ book.title }}
+    <router-link :to="{ name: 'detail', params: { auo: book.id } }">
+      {{ book.title }}
+    </router-link>
   </li>
 </template>
