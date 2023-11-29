@@ -1,18 +1,17 @@
-<script>
-export default {
-  props: {
-    books: {
-      type: Array,
-      required: true,
-      default: [],
-    },
+<script setup>
+import { defineProps, computed } from "vue"
+
+const props = defineProps({
+  books: {
+    type: Array,
+    required: true,
+    default: [],
   },
-  computed: {
-    bookCount() {
-      return this.books.filter((book) => book.title.length > 2).length
-    },
-  },
-}
+})
+
+const bookCount = computed(() => {
+  return props.books.filter((book) => book.title.length > 2).length
+})
 </script>
 
 <template>
